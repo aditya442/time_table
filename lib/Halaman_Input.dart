@@ -97,7 +97,7 @@ class InputState extends State<Halaman_Input>{
     return Scaffold(
       appBar:  AppBar(
         title: Text('Note'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.greenAccent[400]
       ),
       body: SingleChildScrollView(
           child: Form(
@@ -108,7 +108,7 @@ class InputState extends State<Halaman_Input>{
                   SizedBox(height: 30,),
                   Container(
 
-                    margin: EdgeInsets.only(right: 100,left: 15),
+                    margin: EdgeInsets.only(right: 15,left: 15),
                     child: TextFormField(
                       controller: controllerjudul,
                      // maxLines: 2,
@@ -132,7 +132,7 @@ class InputState extends State<Halaman_Input>{
                   SizedBox(height: 20,),
                   Container(
 
-                    margin: EdgeInsets.only(right: 100,left: 15),
+                    margin: EdgeInsets.only(right:15,left: 15),
                     child: TextFormField(
                       controller: controllerdeskripsi,
                       maxLines: 6,
@@ -158,7 +158,7 @@ class InputState extends State<Halaman_Input>{
                   SizedBox(height: 20,),
                  // Text('Basic date field (${format.pattern})'),
                   Container(
-                    margin: EdgeInsets.only(right: 50,left: 15),
+                    margin: EdgeInsets.only(right: 15,left: 15),
                     child: DateTimeField(
                       controller: controllertanggal,
                       decoration: InputDecoration(
@@ -212,7 +212,7 @@ class InputState extends State<Halaman_Input>{
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         RaisedButton(
-                            color: Colors.blue[900],
+                            color: Colors.greenAccent[400],
                             child: Text(
                               "Cancel",
                               style: TextStyle(
@@ -226,7 +226,7 @@ class InputState extends State<Halaman_Input>{
 
 
                         RaisedButton(
-                          color: Colors.blue[900],
+                          color: Colors.greenAccent[400],
                           child: Text(
                             "Save",
                             style: TextStyle(

@@ -43,7 +43,6 @@ class HalamanState extends State<Halaman_Utama> {
 
   void initState() {
     super.initState();
-
     initDeviceId();
   }
 
@@ -85,7 +84,7 @@ class HalamanState extends State<Halaman_Utama> {
           children: <Widget>[
             new UserAccountsDrawerHeader(accountName:Text(''), accountEmail:Text('Time Note Reminder',style: TextStyle(fontSize: 20),),
               currentAccountPicture: new CircleAvatar(backgroundColor: Colors.white,child: Image.asset('assets/images/logo.jpg',height: 60,),),
-              decoration: new BoxDecoration(color: Colors.blue[900]),
+              decoration: new BoxDecoration(color: Colors.greenAccent[400]),
               otherAccountsPictures: <Widget>[
                //  new CircleAvatar(backgroundColor: Colors.black26,child: new Text('y'),),
                 //  new CircleAvatar(backgroundColor: Colors.black26,child: new Text('W'),),
@@ -134,7 +133,7 @@ class HalamanState extends State<Halaman_Utama> {
           );
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.greenAccent[700],
       ),
       body: CustomScrollView(
         slivers: <Widget>[
@@ -151,7 +150,7 @@ class HalamanState extends State<Halaman_Utama> {
                           child: Container(
                                 height:200,
                                 width: double.infinity,
-                                color: Colors.blue[900]
+                                color: Colors.greenAccent[400]
                             ),
                         ),
                         Column(
@@ -274,7 +273,7 @@ class HalamanState extends State<Halaman_Utama> {
                   child: new Card(
                     child: new ListTile(
                       title: new Text(list[index]['judul']),
-                      leading: new Icon(Icons.book,color: Colors.orange,size: 40,),
+                      leading: new Icon(Icons.book,color: Colors.redAccent,size: 40,),
                       subtitle: new Text("${list[index]['tanggal']}"),
                     ),
                   ),

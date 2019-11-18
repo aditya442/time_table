@@ -26,7 +26,7 @@ class EditState extends State<Edit>{
   void editData() {
     var url="http://adityo.xyz/jatis/jatis_edit.php";
     http.post(url,body: {
-      "id": widget.list[widget.index]['id'],
+      "device_id": widget.list[widget.index]['device_id'],
       "judul": controllerjudul.text,
       "deskripsi": controllerdeskripsi.text,
       "tanggal": controllertanggal.text,
@@ -41,13 +41,41 @@ class EditState extends State<Edit>{
     super.initState();
   }
 
+
+  void _tampilkanalert() {
+    AlertDialog alertDialog = new AlertDialog(
+      content: new Container(
+
+        height: 150.0,
+        child: Column(
+
+          children: <Widget>[
+
+            new Image.asset(
+              "assets/images/sss.png",
+              height: 100,
+              width: 100,
+
+            ),
+            SizedBox(height: 15,),
+            new Center(
+              child: new Text("Update Data succes"),
+            ),
+          ],
+        ),
+      ),
+    );
+    showDialog(context: context, child: alertDialog);
+  }
+
+
   @override
    Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar:  AppBar(
         title: Text('Edit'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.greenAccent[400],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -131,7 +159,7 @@ class EditState extends State<Edit>{
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     RaisedButton(
-                        color: Colors.blue[900],
+                        color: Colors.greenAccent[400],
                         child: Text(
                           "Cancel",
                           style: TextStyle(
@@ -142,7 +170,7 @@ class EditState extends State<Edit>{
                         onPressed: () => Navigator.pop(context,false)
                     ),
                     RaisedButton(
-                      color: Colors.blue[900],
+                      color: Colors.greenAccent[400],
                       child: Text(
                         "Save",
                         style: TextStyle(
@@ -160,6 +188,7 @@ class EditState extends State<Edit>{
                                 }
                             )
                         );
+                        _tampilkanalert();
                       },
                     ),
                   ],

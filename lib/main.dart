@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 height:  250,
               ),
               SizedBox(height: 25,),
-              Text('Time Note Table',style: TextStyle(color: Colors.blue[900],fontSize: 30,fontWeight: FontWeight.w700))
+              Text('Time Note Reminder',style: TextStyle(color: Colors.blue[900],fontSize: 30,fontWeight: FontWeight.w700))
             ],
           ),
         ],
