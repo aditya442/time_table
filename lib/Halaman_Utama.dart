@@ -5,7 +5,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_jatis/detail.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:device_id/device_id.dart';
 
@@ -84,7 +83,7 @@ class HalamanState extends State<Halaman_Utama> {
           children: <Widget>[
             new UserAccountsDrawerHeader(accountName:Text(''), accountEmail:Text('Time Note Reminder',style: TextStyle(fontSize: 20),),
               currentAccountPicture: new CircleAvatar(backgroundColor: Colors.white,child: Image.asset('assets/images/logo.jpg',height: 60,),),
-              decoration: new BoxDecoration(color: Colors.greenAccent[400]),
+              decoration: new BoxDecoration(color: Colors.deepOrange),
               otherAccountsPictures: <Widget>[
                //  new CircleAvatar(backgroundColor: Colors.black26,child: new Text('y'),),
                 //  new CircleAvatar(backgroundColor: Colors.black26,child: new Text('W'),),
@@ -133,7 +132,7 @@ class HalamanState extends State<Halaman_Utama> {
           );
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.greenAccent[700],
+        backgroundColor: Colors.deepOrange
       ),
       body: CustomScrollView(
         slivers: <Widget>[
@@ -150,7 +149,7 @@ class HalamanState extends State<Halaman_Utama> {
                           child: Container(
                                 height:200,
                                 width: double.infinity,
-                                color: Colors.greenAccent[400]
+                                color: Colors.deepOrange,
                             ),
                         ),
                         Column(
@@ -158,13 +157,17 @@ class HalamanState extends State<Halaman_Utama> {
                            AppBar(
                               elevation: 0,
                              backgroundColor: Colors.transparent,
-                             title: Text('Time Note Reminder'),
+                             title: Text('Note Reminder'),
                              actions: <Widget>[
                                IconButton(onPressed: (){
                                  _getjudul();
-
-                                   }, icon: Icon(Icons.search),
-
+                                   },
+                                 icon: Icon(Icons.search),
+                               ),
+                               IconButton(onPressed: (){
+                                 _getjudul();
+                                 },
+                                 icon: Icon(Icons.refresh),
                                ),
                               // Icon(Icons.threesixty),
                              ],
@@ -177,7 +180,7 @@ class HalamanState extends State<Halaman_Utama> {
 
                                children: <Widget>[
                                  Container(
-                                margin: EdgeInsets.all(15),
+                                   margin: EdgeInsets.all(15),
                                       child: Card(
                                               child: Container(
 
@@ -196,53 +199,6 @@ class HalamanState extends State<Halaman_Utama> {
                             ],
                           ),
                         ),
-                     /*   Padding(
-                          padding: const EdgeInsets.only(top: 135),
-                          child: Container(
-                            width: double.infinity,
-                            // padding: EdgeInsets.only(top: 0),
-                            child:  CarouselSlider(
-                              //  aspectRatio: 16/9,
-                              viewportFraction: 0.8,
-                              initialPage: 0,
-                              enableInfiniteScroll: true,
-                              reverse: false,
-                              autoPlay: true,
-                              autoPlayInterval: Duration(seconds: 2),
-                              autoPlayAnimationDuration: Duration(milliseconds: 800),
-                              // autoPlayCurve: Curve.fastOutSlowIn,
-                              pauseAutoPlayOnTouch: Duration(seconds: 5),
-                              enlargeCenterPage: true,
-                              //  onPageChanged: callbackFunction,
-                              scrollDirection: Axis.horizontal,
-                              //  height: 150.0,
-                              items: [
-                                'assets/images/calender.jpg',
-                                'assets/images/gambar.jpg',
-                                'assets/images/waktu.jpg',
-                              ].map((i) {
-                                return Builder(
-                                  builder: (BuildContext context) {
-                                    return Container(
-                                       height: 70,
-                                      //  width: double.infinity,
-                                        //width: MediaQuery.of(context).size.width,
-                                        margin: EdgeInsets.symmetric(horizontal: 20 ,vertical: 20) ,
-                                        // padding: EdgeInsets.only(right: 20,left: 20),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5),
-                                          color: Colors.transparent,
-                                        ),
-                                        child: Image.asset((i))
-                                    );
-                                  },
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        ),
-
-                      */
                       ],
                     ),
                   ],
@@ -269,7 +225,6 @@ class HalamanState extends State<Halaman_Utama> {
                           builder: (BuildContext context)=> new Detail (list:list , index: index,)
                       )
                   ),
-
                   child: new Card(
                     child: new ListTile(
                       title: new Text(list[index]['judul']),

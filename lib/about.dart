@@ -1,18 +1,43 @@
 import 'package:flutter/material.dart';
 
 
-class About extends  StatefulWidget{
-  @override
-  AboutState  createState()=> AboutState();
-}
-class AboutState extends State<About>{
+class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('About'),
-        backgroundColor: Colors.blue[900]
+       backgroundColor: Colors.deepOrange,
+        title: Text(
+          "About",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        actions: <Widget>[],
+      ),
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              height: 130,
+              width: 130,
+              child: CircleAvatar(
+                backgroundImage: AssetImage(
+                  "assets/images/logo.jpg",
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(16),
+              child: Text(
+                  'Catatan pengingat merupakan aplikasi pengingat catatan yang user friendly. \nAplikasi ini dibuat oleh tim flutter yang beranggotakan 5 orang, yaitu Aditya, Aditya A, Aziz, Rizqi, dan Rizal.',
+                  style: TextStyle(
+                    fontSize: 19,
+                    color: Color.fromARGB(255, 68, 44, 46),
+                  ),
+                  textAlign: TextAlign.justify),
+            ),
+          ],
+        ),
       ),
     );
   }

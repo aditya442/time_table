@@ -17,7 +17,7 @@ class _DetailState extends State<Detail> {
   void deleteData(){
     var url="http://adityo.xyz/jatis/jatis_delete.php";
     http.post(url, body: {
-      'device_id': widget.list[widget.index]['device_id'],
+      'id': widget.list[widget.index]['id'],
 
     });
   }
@@ -28,7 +28,7 @@ class _DetailState extends State<Detail> {
       actions: <Widget>[
         new RaisedButton(
           child: new Text("Hapus",style: new TextStyle(color: Colors.white),),
-          color: Colors.pinkAccent,
+          color: Colors.deepOrange,
           onPressed: (){
             deleteData();
             Navigator.of(context).push(
@@ -54,7 +54,7 @@ class _DetailState extends State<Detail> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-          backgroundColor: Colors.greenAccent[400],
+          backgroundColor: Colors.deepOrange,
           title: new Text("Detail")
       ),
       body: new Container(
@@ -107,7 +107,7 @@ class _DetailState extends State<Detail> {
                   children: <Widget>[
                     new RaisedButton(
                       child: new Text("EDIT",style: TextStyle(color: Colors.white),),
-                      color: Colors.greenAccent[400],
+                      color: Colors.deepOrange,
                       onPressed: ()=>Navigator.of(context).push(
                         new MaterialPageRoute(
                             builder: (BuildContext context)=>new Edit(list: widget.list,index: widget.index)),
@@ -115,7 +115,7 @@ class _DetailState extends State<Detail> {
                     ),
                     new RaisedButton(
                       child: new Text("HAPUS",style: TextStyle(color: Colors.white),),
-                      color: Colors.greenAccent[400],
+                      color: Colors.deepOrange,
                       onPressed: ()=>confirm(),
                     ),
                   ],

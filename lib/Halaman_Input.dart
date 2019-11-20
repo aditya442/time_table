@@ -1,11 +1,10 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:http/http.dart'  as http;
 import 'package:flutter_jatis/Halaman_Utama.dart';
-import 'dart:convert';
 import 'package:device_id/device_id.dart';
-import 'package:sweet_alert_dialogs/sweet_alert_dialogs.dart';
 
 
 class Halaman_Input extends StatefulWidget{
@@ -21,10 +20,13 @@ class InputState extends State<Halaman_Input>{
   bool _value2 = false;
   void _onChanged2(bool value) => setState(() => _value2 = value);
 
+  StreamController<String>judulStreamController;
+
 
   TextEditingController controllerjudul = new TextEditingController();
   TextEditingController controllerdeskripsi = new TextEditingController();
   TextEditingController controllertanggal = new TextEditingController();
+
 
 
   void addData(){
@@ -45,8 +47,35 @@ class InputState extends State<Halaman_Input>{
   void initState() {
     super.initState();
     initDeviceId();
+    judulStreamController = StreamController<String>.broadcast();
+    controllerjudul.addListener((){
+      judulStreamController.sink.add(controllerjudul.text.trim());
+    });
 
   }
+
+  
+  @override
+  void dispose(){
+    super.dispose();
+    judulStreamController.close();
+
+  }
+  
+  Color getColor(String text){
+    if(text == null){
+      return Colors.blue;
+    }
+    if(text.isEmpty){
+      return Colors.blue;
+    }else if (text.isNotEmpty){
+      return Colors.deepOrange;
+    }else{
+      return Colors.purpleAccent;
+    }
+  }
+
+
 
 
   Future<void> initDeviceId() async {
@@ -76,7 +105,6 @@ class InputState extends State<Halaman_Input>{
               "assets/images/sss.png",
               height: 100,
               width: 100,
-
             ),
             SizedBox(height: 15,),
             new Center(
@@ -90,14 +118,13 @@ class InputState extends State<Halaman_Input>{
   }
 
 
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
       appBar:  AppBar(
         title: Text('Note'),
-        backgroundColor: Colors.greenAccent[400]
+        backgroundColor: Colors.deepOrange,
       ),
       body: SingleChildScrollView(
           child: Form(
@@ -202,9 +229,6 @@ class InputState extends State<Halaman_Input>{
                     onChanged: _onChanged2,
                     title: new Text('priority', style: new TextStyle(fontWeight: FontWeight.bold, color: Colors.blue)),
                   ),
-
-
-
                   SizedBox(height: 30,),
                   Container(
                     margin: EdgeInsets.only(right: 15,left: 15),
@@ -212,7 +236,7 @@ class InputState extends State<Halaman_Input>{
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         RaisedButton(
-                            color: Colors.greenAccent[400],
+                            color: Colors.deepOrange,
                             child: Text(
                               "Cancel",
                               style: TextStyle(
@@ -223,39 +247,37 @@ class InputState extends State<Halaman_Input>{
                             ),
                             onPressed: () => Navigator.pop(context,false)
                         ),
+                        StreamBuilder(
+                          stream: judulStreamController.stream,
+                          builder: (context, snapshot) {
+                            return RaisedButton(
+                              color: getColor(snapshot.data),
+                              child: Text(
+                                "Save",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              onPressed: () {
+                                if (formKey.currentState.validate()) {
+                                  formKey.currentState.save();
 
-
-                        RaisedButton(
-                          color: Colors.greenAccent[400],
-                          child: Text(
-                            "Save",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                            ),
-                          ),
-                          onPressed: () {
-
-
-                            if (formKey.currentState.validate()) {
-                              formKey.currentState.save();
-
-                              addData();
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) {
-                                        return Halaman_Utama();
-                                      }
-                                  )
-                              );
-                              _tampilkanalert();
-                            }
-
-                          },
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                            return Halaman_Utama();
+                                          }
+                                      )
+                                  );
+                                  addData();
+                                  _tampilkanalert();
+                                }
+                              },
+                            );
+                          }
                         ),
-
                       ],
                     ),
                   ),
